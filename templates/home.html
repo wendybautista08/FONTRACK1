@@ -4,39 +4,36 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FONTRACK — Inteligencia financiera al alcance de todos</title>
-  <link rel="stylesheet" href="../static/style.css" />
+  <link rel="stylesheet" href="..//static/style.css" />
   <meta name="description" content="Educación financiera y servicios contables accesibles para estudiantes, emprendedores y microempresarios en Colombia." />
-    
   <meta name="author" content="FONTRACK" />
-  <style>
-   
-  </style>
 </head>
+
 <body>
+  <!-- HEADER -->
   <header>
     <div class="container topbar">
       <div class="brand">
         <div class="logo">
-          <img src="../static/img/logo.jpeg" alt="FONTRACK Logo" class="logo-img">
-          <div>
-          
-      </div>
-    </div>
-
-        <div><div style="font-weight:800">FONTRACK</div><div class="small muted">Inteligencia financiera</div></div>
+          <img src="../static/img/FK.jpeg" alt="FONTRACK Logo" class="logo-img">
+        </div>
+        <div>
+          <div style="font-weight:800">FONTRACK</div>
+          <div class="small muted">Inteligencia financiera</div>
+        </div>
       </div>
       <nav>
         <a class="navlink" href="#home">Home</a>
         <a class="navlink" href="#services">Servicios</a>
         <a class="navlink" href="#education">Educación</a>
         <a class="navlink" href="#contact">Contacto</a>
-        <a class="cta-compact" href="#login">Iniciar sesión</a>
+        <a class="cta-compact" href="#cart">🛒 Carrito (<span id="cart-count">0</span>)</a>
       </nav>
     </div>
   </header>
 
+  <!-- HERO -->
   <main id="home">
-    <!-- HERO -->
     <section class="hero">
       <div class="container hero-grid">
         <div>
@@ -63,79 +60,73 @@
       </div>
     </section>
 
-    <!-- PLANS -->
-    <section style="background:var(--blue-700);color:#fff">
-      <div class="container">
-        <h2>Planes contables</h2>
-        <div class="plans-grid">
-          <div class="plan">
-            <img src="../static/img/2.jpg" alt="Plan Básico">
-            <div class="plan-content">
-              <div><h3>Plan Básico</h3><div class="price">$XX.XXX / mes</div></div>
-              <a class="btn btn-primary" href="#">Contratar ahora</a>
-            </div>
-          </div>
-          <div class="plan">
-            <img src="../static/img/3.jpg" alt="Plan Intermedio">
-            <div class="plan-content">
-              <div><h3>Plan Intermedio</h3><div class="price">$XX.XXX / mes</div></div>
-              <a class="btn btn-primary" href="#">Contratar ahora</a>
-            </div>
-          </div>
-          <div class="plan">
-            <img src="../static/img/4.jpg" alt="Plan Avanzado">
-            <div class="plan-content">
-              <div><h3>Plan Avanzado</h3><div class="price">$XX.XXX / mes</div></div>
-              <a class="btn btn-primary" href="#">Contratar ahora</a>
-            </div>
-          </div>
+ <!-- PLANS -->
+<section style="background:var(--blue-700);color:#fff">
+  <div class="container">
+    <h2>Planes contables</h2>
+    <div class="plans-grid">
+      <div class="plan">
+        <img src="../static/img/2.jpg" alt="Plan Básico">
+        <div class="plan-content">
+          <div><h3>Plan Básico</h3><div class="price">$10.000 / 1 mes</div></div>
+          <a class="btn btn-primary add-to-cart" data-id="1" data-name="Plan Básico" data-price="10000" href="javascript:void(0);">Contratar ahora</a>
         </div>
       </div>
-    </section>
-
-<!-- CONOCE NUESTRO EQUIPO -->
-<section id="team">
-  <div class="container">
-    <h2>Conoce nuestro equipo</h2>
-    <div class="team-grid">
-      
-      <div class="team-member">
-        <a href="https://www.linkedin.com/" target="_blank" class="circle">
-          <img src="../static/img/hj.jpeg" alt="Miembro 1">
-        </a>
-        <p class="team-name">Nicolas Jimenez</p>
+      <div class="plan">
+        <img src="../static/img/3.jpg" alt="Plan Intermedio">
+        <div class="plan-content">
+          <div><h3>Plan Intermedio</h3><div class="price">$50.000 / 6 meses</div></div>
+          <a class="btn btn-primary add-to-cart" data-id="2" data-name="Plan Intermedio" data-price="50000" href="javascript:void(0);">Contratar ahora</a>
+        </div>
       </div>
-
-      <div class="team-member">
-        <a href="https://www.instagram.com/" target="_blank" class="circle">
-          <img src="../static/img/wm.jpeg" alt="Miembro 2">
-        </a>
-        <p class="team-name">Wendy Mosuca</p>
+      <div class="plan">
+        <img src="../static/img/4.jpg" alt="Plan Avanzado">
+        <div class="plan-content">
+          <div><h3>Plan Avanzado</h3><div class="price">$100.000 / 1 año</div></div>
+          <a class="btn btn-primary add-to-cart" data-id="3" data-name="Plan Avanzado" data-price="100000" href="javascript:void(0);">Contratar ahora</a>
+        </div>
       </div>
-      
-      <div class="team-member">
-        <a href="https://www.twitter.com/" target="_blank" class="circle">
-          <img src="../static/img/dg.jpeg" alt="Miembro 3">
-        </a>
-        <p class="team-name">David Garzon</p>
-      </div>
-      
-      <div class="team-member">
-        <a href="https://www.fontrack.co/" target="_blank" class="circle">
-          <img src="4.jpg" alt="Miembro 4">
-        </a>
-        <p class="team-name">Domminyck Higuera</p>
-      </div>
-    
     </div>
   </div>
 </section>
 
 
 
+    <!-- TEAM -->
+    <section id="team">
+      <div class="container">
+        <h2>Conoce nuestro equipo</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <a href="https://www.linkedin.com/" target="_blank" class="circle">
+              <img src="../static/img/hj.jpeg" alt="Miembro 1">
+            </a>
+            <p class="team-name">Nicolas Jimenez</p>
+          </div>
+          <div class="team-member">
+            <a href="https://www.instagram.com/" target="_blank" class="circle">
+              <img src="../static/img/wm.jpeg" alt="Miembro 2">
+            </a>
+            <p class="team-name">Wendy Mosuca</p>
+          </div>
+          <div class="team-member">
+            <a href="https://www.twitter.com/" target="_blank" class="circle">
+              <img src="../static/img/dg.jpeg" alt="Miembro 3">
+            </a>
+            <p class="team-name">David Garzon</p>
+          </div>
+          <div class="team-member">
+            <a href="https://www.fontrack.co/" target="_blank" class="circle">
+              <img src="../static/img/d.jpeg" alt="Miembro 4">
+            </a>
+            <p class="team-name">Domminyck Higuera</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-
-
+  <!-- FOOTER -->
   <footer>
     <div class="container footer-grid">
       <div><div class="logo">FT</div><p>Inteligencia financiera</p></div>
@@ -143,5 +134,83 @@
       <div><h4>Síguenos</h4><a href="#">IG</a> | <a href="#">IN</a></div>
     </div>
   </footer>
+
+ <!-- 🛒 MODAL CARRITO -->
+<div id="cart-modal" class="cart-modal hidden">
+  <div class="cart-content">
+    <h3>🛍️ Carrito de compras</h3>
+    <ul id="cart-items"></ul>
+    <p id="cart-total">Total: $0</p>
+
+    <!-- Botón Pagar con enlace a la página de pago -->
+    <a href="../templates/pago.html" class="btn btn-primary" id="checkout-btn">Pagar 💳</a>
+    <button id="close-cart" class="btn btn-secondary">Cerrar</button>
+  </div>
+</div>
+
+
+  <!-- SCRIPT -->
+  <script>
+    const cart = [];
+    const cartModal = document.getElementById('cart-modal');
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const cartCount = document.getElementById('cart-count');
+
+    document.querySelector('a[href="#cart"]').addEventListener('click', () => {
+      cartModal.classList.remove('hidden');
+      renderCart();
+    });
+
+    document.getElementById('close-cart').addEventListener('click', () => {
+      cartModal.classList.add('hidden');
+    });
+
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = {
+          id: btn.dataset.id,
+          name: btn.dataset.name,
+          price: parseFloat(btn.dataset.price)
+        };
+        cart.push(item);
+        renderCart();
+      });
+    });
+
+    function renderCart() {
+      cartItems.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        const li = document.createElement('li');
+        li.innerHTML = `${item.name} - $${item.price.toLocaleString()} <button onclick="removeItem(${index})">❌</button>`;
+        cartItems.appendChild(li);
+      });
+      cartTotal.textContent = `Total: $${total.toLocaleString()}`;
+      cartCount.textContent = cart.length;
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      renderCart();
+    }
+
+    document.getElementById('checkout-btn').addEventListener('click', () => {
+      fetch('/checkout', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(cart)
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert('Compra procesada ✅');
+        cart.length = 0;
+        renderCart();
+        cartModal.classList.add('hidden');
+      })
+      .catch(err => console.error(err));
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,87 @@
+/* 💳 Estilos minimalistas para la página de pago */
+.pago-section {
+  max-width: 600px;
+  margin: 80px auto;
+  background: var(--muted);
+  padding: 40px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+}
+
+.pago-section h2 {
+  text-align: center;
+  color: var(--blue-900);
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.payment-form label {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.payment-form input,
+.payment-form select {
+  padding: 12px;
+  border: none;
+  border-bottom: 2px solid #d1d5db;
+  background: transparent;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.payment-form input:focus,
+.payment-form select:focus {
+  outline: none;
+  border-bottom-color: var(--accent-green);
+}
+
+.payment-summary {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 25px;
+  text-align: center;
+  font-size: 18px;
+  color: var(--blue-900);
+  font-weight: 600;
+}
+
+.payment-btn {
+  background: var(--accent-green);
+  color: #042028;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: background 0.25s ease;
+}
+
+.payment-btn:hover {
+  background: #27ae60;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .pago-section {
+    padding: 24px;
+    margin: 40px auto;
+  }
+  .payment-btn {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
