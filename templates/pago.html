@@ -3,35 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <title>Pagar | Fontrack</title>
+  <!-- ✅ Flask sirve archivos estáticos con url_for -->
   <link rel="stylesheet" href="../static/style2.css">
 </head>
 
-<body style="background: var(--blue-700); color: #fff;">
-  <div class="container">
-    <h1>Área de Pago 💳</h1>
-    <p>Aquí podrás finalizar la compra de tu plan.</p>
 
-    <form action="/procesar_pago" method="POST" class="form-pago">
-      <label for="nombre">Nombre completo</label>
-      <input type="text" id="nombre" name="nombre" required>
+<body>
+  <div class="container pago-section">
+    <h1>Finaliza tu pago 💳</h1>
+    <p class="muted">Introduce los datos de pago. Esto es una simulación — en producción usa una pasarela (Stripe, MercadoPago, PayU).</p>
+
+    <!-- Mensaje de error / éxito -->
+    <div id="alert" class="alert" style="display:none;"></div>
+
+    <!-- Cambiamos el action para usar Flask -->
+    <form id="payment-form" action="{{ url_for('procesar_pago') }}" method="POST" novalidate>
+      <!-- Datos del pedido -->
+      <div class="payment-summary">
+        <div>Resumen del pedido</div>
+        <div id="order-total"><strong>Total:</strong> $<span id="total-value">0</span></div>
+      </div>
+
+      <label for="nombre">Nombre completo (titular)</label>
+      <input type="text" id="nombre" name="nombre" required autocomplete="name" placeholder="Nombre como aparece en la tarjeta">
 
       <label for="email">Correo electrónico</label>
-      <input type="email" id="email" name="email" required>
+      <input type="email" id="email" name="email" required autocomplete="email" placeholder="tu@correo.com">
 
-      <label for="metodo">Método de pago</label>
-      <select id="metodo" name="metodo" required>
+      <label for="phone">Teléfono</label>
+      <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+57 300 0000000">
+
+      <div class="card-row">
+        <div class="card-field">
+          <label for="cardnumber">Número de tarjeta</label>
+          <input type="text" id="cardnumber" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" autocomplete="cc-number" required>
+        </div>
+
+        <div class="card-field-inline">
+          <label for="exp">Expiración (MM/AA)</label>
+          <input type="text" id="exp" inputmode="numeric" maxlength="5" placeholder="MM/AA" autocomplete="cc-exp" required>
+        </div>
+
+        <div class="card-field-inline">
+          <label for="cvv">CVV</label>
+          <input type="password" id="cvv" inputmode="numeric" maxlength="4" placeholder="123" autocomplete="cc-csc" required>
+        </div>
+      </div>
+
+      <label for="address">Dirección de facturación</label>
+      <input type="text" id="address" name="address" required placeholder="Calle, #, Ciudad, Departamento">
+
+      <label for="country">País</label>
+      <select id="country" name="country" required>
         <option value="">Selecciona...</option>
-        <option value="tarjeta">Tarjeta de crédito/débito</option>
-        <option value="nequi">Nequi</option>
-        <option value="daviplata">Daviplata</option>
+        <option value="CO">Colombia</option>
+        <option value="US">Estados Unidos</option>
+        <option value="OTHER">Otro</option>
       </select>
 
-      <button type="submit" class="btn-pagar">Pagar Ahora 🚀</button>
+      <input type="hidden" name="total" id="total-input" value="0">
+      <a href="../templates/gracias.html" class="btn-pagar">Pagar Ahora 🚀</button>
+        
     </form>
 
-    <br>
     <a href="../templates/home.html" class="btn-volver">⬅ Volver al inicio</a>
+    <p class="small-note">Nota: para producción integra una pasarela PCI-compliant. Nunca almacenes PAN/CVV en tu servidor.</p>
   </div>
-</body>
-</html>
 
+  <script>
+    const onlyDigits = s => (s || '').replace(/\D/g, '');
+
+    function luhnCheck(num) {
+      const digits = onlyDigits(num).split('').reverse().map(d => parseInt(d, 10));
+      let sum = 0;
+      for (let i = 0; i < digits.length; i++) {
+        let d = digits[i];
+        if (i % 2 === 1) {
+          d = d * 2;
+          if (d > 9) d -= 9;
+        }
+        sum += d;
+      }
+      return sum % 10 === 0;
+    }
+
+    const form = document.getElementById('payment-form');
+    const cardInput = document.getElementById('cardnumber');
+    const expInput = document.getElementById('exp');
+    const cvvInput = document.getElementById('cvv');
+    const alertBox = document.getElementById('alert');
+    const totalValue = document.getElementById('total-value');
+    const totalInput = document.getElementById('total-input');
+
+    const savedTotal = sessionStorage.getItem('fontrack_total') || '120000';
+    totalValue.textContent = Number(savedTotal).toLocaleString();
+    totalInput.value = savedTotal;
+
+    cardInput.addEventListener('input', (e) => {
+      let val = onlyDigits(e.target.value).slice(0, 19);
+      let groups = [];
+      for (let i = 0; i < val.length; i += 4) groups.push(val.slice(i, i+4));
+      e.target.value = groups.join(' ');
+    });
+
+    expInput.addEventListener('input', (e) => {
+      let v = onlyDigits(e.target.value).slice(0,4);
+      if (v.length >= 3) v = v.slice(0,2) + '/' + v.slice(2);
+      e.target.value = v;
+    });
+
+    function showAlert(text, type = 'error') {
+      alertBox.style.display = 'block';
+      alertBox.textContent = text;
+      alertBox.style.background = type === 'error' ? 'rgba(255,80,80,0.12)' : 'rgba(46,204,113,0.12)';
+      alertBox.style.color = type === 'error' ? '#ff5a5a' : '#0a7a3b';
+      setTimeout(()=> {
+        alertBox.style.display = 'none';
+      }, 6000);
+    }
+
+    form.addEventListener('submit', (e) => {
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const card = cardInput.value.trim();
+      const exp = expInput.value.trim();
+      const cvv = cvvInput.value.trim();
+      const addr = document.getElementById('address').value.trim();
+      const country = document.getElementById('country').value;
+
+      if (!nombre || !email || !phone || !card || !exp || !cvv || !addr || !country) {
+        e.preventDefault();
+        showAlert('Completa todos los campos requeridos.', 'error');
+        return;
+      }
+
+      if (!luhnCheck(card)) {
+        e.preventDefault();
+        showAlert('Número de tarjeta inválido (verifica).', 'error');
+        return;
+      }
+
+      const [mm, yy] = exp.split('/');
+      if (!mm || !yy || mm < '01' || mm > '12') {
+        e.preventDefault();
+        showAlert('Fecha de expiración inválida.', 'error');
+        return;
+      }
+
+      const current = new Date();
+      const fullYear = 2000 + parseInt(yy, 10);
+      const expDate = new Date(fullYear, parseInt(mm,10) - 1, 1);
+      if (expDate < new Date(current.getFullYear(), current.getMonth(), 1)) {
+        e.preventDefault();
+        showAlert('La tarjeta está vencida.', 'error');
+        return;
+      }
+
+      if (!/^\d{3,4}$/.test(cvv)) {
+        e.preventDefault();
+        showAlert('CVV inválido.', 'error');
+        return;
+      }
+
+      // 👇 Redirigir tras validación exitosa
+      e.preventDefault();
+      showAlert('Validación exitosa — redirigiendo...', 'success');
+      setTimeout(() => {
+        window.location.href = "{{ url_for('exito') }}";
+      }, 1500);
+    });
+  </script>
+</body>

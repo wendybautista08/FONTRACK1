@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Fontrack</title>
+    <link rel="stylesheet" href="../static/style2.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <img src="..//static/img/FK.jpeg" alt="Logo Fontrack" class="logo">
+        <h1>FONTRACK</h1>
+    </header>
+
+    <!-- Sección para crear un nuevo artículo -->
+    <section class="blog-form-section">
+        <h2>Publicar un nuevo artículo 📝</h2>
+        <form id="blogForm">
+            <input type="text" id="titulo" placeholder="Título del artículo" required>
+            <textarea id="contenido" placeholder="Escribe tu contenido aquí..." required></textarea>
+            <button type="submit" class="btn">Publicar</button>
+        </form>
+    </section>
+
+    <!-- Sección para mostrar los artículos -->
+    <section class="blog-list-section">
+        <h2>Artículos publicados 📚</h2>
+        <div id="listaArticulos">
+            <!-- Aquí se insertan dinámicamente los artículos -->
+        </div>
+    </section>
+
+ <script>
+    const form = document.getElementById('blogForm');
+    const listaArticulos = document.getElementById('listaArticulos');
+
+    // 🚀 Cargar artículos guardados al iniciar
+    document.addEventListener('DOMContentLoaded', () => {
+        const articulosGuardados = obtenerArticulos();
+        articulosGuardados.forEach(art => mostrarArticulo(art));
+    });
+
+    // 📝 Publicar nuevo artículo
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const titulo = document.getElementById('titulo').value;
+        const contenido = document.getElementById('contenido').value;
+
+        if (titulo.trim() && contenido.trim()) {
+            const nuevoArticulo = {
+                id: Date.now(), // ID único
+                titulo,
+                contenido
+            };
+
+            const articulos = obtenerArticulos();
+            articulos.push(nuevoArticulo);
+            guardarArticulos(articulos);
+
+            mostrarArticulo(nuevoArticulo);
+            form.reset();
+        }
+    });
+
+    // 🧱 Mostrar artículo en pantalla
+    function mostrarArticulo(articuloData) {
+        const { id, titulo, contenido } = articuloData;
+        const articulo = document.createElement('div');
+        articulo.classList.add('articulo');
+        articulo.dataset.id = id;
+
+        articulo.innerHTML = `
+            <div class="articulo-header">
+                <h3>${titulo}</h3>
+                <div class="acciones">
+                    <button class="editar" title="Editar">✏️</button>
+                    <button class="eliminar" title="Eliminar">🗑️</button>
+                </div>
+            </div>
+            <p>${contenido}</p>
+        `;
+
+        // Botón eliminar
+        articulo.querySelector('.eliminar').addEventListener('click', () => {
+            eliminarArticulo(id);
+        });
+
+        // Botón editar
+        articulo.querySelector('.editar').addEventListener('click', () => {
+            editarArticulo(id);
+        });
+
+        listaArticulos.appendChild(articulo);
+    }
+
+    // ❌ Eliminar artículo
+    function eliminarArticulo(id) {
+        let articulos = obtenerArticulos();
+        articulos = articulos.filter(art => art.id !== id);
+        guardarArticulos(articulos);
+        recargarArticulos();
+    }
+
+    // ✏️ Editar artículo
+    function editarArticulo(id) {
+        let articulos = obtenerArticulos();
+        const index = articulos.findIndex(art => art.id === id);
+        if (index === -1) return;
+
+        const nuevoTitulo = prompt("Editar título:", articulos[index].titulo);
+        const nuevoContenido = prompt("Editar contenido:", articulos[index].contenido);
+
+        if (nuevoTitulo !== null && nuevoContenido !== null) {
+            articulos[index].titulo = nuevoTitulo;
+            articulos[index].contenido = nuevoContenido;
+            guardarArticulos(articulos);
+            recargarArticulos();
+        }
+    }
+
+    // 📥 Obtener artículos de localStorage
+    function obtenerArticulos() {
+        return JSON.parse(localStorage.getItem('articulos')) || [];
+    }
+
+    // 📤 Guardar artículos en localStorage
+    function guardarArticulos(articulos) {
+        localStorage.setItem('articulos', JSON.stringify(articulos));
+    }
+
+    // 🔄 Recargar artículos en pantalla
+    function recargarArticulos() {
+        listaArticulos.innerHTML = '';
+        const articulos = obtenerArticulos();
+        articulos.forEach(art => mostrarArticulo(art));
+    }
+</script>
+
+
+</body>
+</html>

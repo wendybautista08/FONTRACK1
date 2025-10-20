@@ -1,0 +1,475 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Monserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+.menu ul{
+    list-style: none;
+    display: flex;
+    justify-content:left;
+    background-color: #e9c691;
+}
+
+.menu ul li {
+  margin-left: 50px;
+  text-decoration: none;
+  
+
+}
+.menu ul li a {
+  text-decoration: none;
+  color: white; /* opcional para que se vea mejor sobre fondo oscuro */
+  font-weight: 1000;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+}
+
+.menu ul li a:hover {
+  color: #f1d991; /* Cambia el color al pasar el mouse */
+}
+
+.header{
+    background-image: url("IMG/FB_IMG_1730235366277.jpg");
+    padding: 20px;
+    background-size: cover;   
+    text-align: center;
+    display : flex;
+    flex-direction: column;
+    justify-content: center ;
+    align-items: center;
+
+    height: 35vh;
+}
+
+.header h1 {
+    font-size: 3rem;
+    
+    font-family: 'Oswald', sans-serif;
+}
+.header h1 {
+    font-size: 3rem;
+    
+    font-family: 'Oswald', sans-serif;
+    background-color: aliceblueS;
+}
+.header span{
+    display: block;
+    font-size: 4.1rem;
+    color: rgba(255, 255, 255, 0.966);
+    
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 100px;
+}
+
+.header p{
+    display: block;
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+ 
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 60px;
+}
+.header-text  button{
+    background-color: #f1d991;
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-top: 60px;
+    
+}
+.header{
+    background-image: url("IMG/pepito.jpeg");
+    padding: 20px;
+    background-size: cover;   
+    text-align: center;
+    display : flex;
+    flex-direction: column;
+    justify-content: center ;
+    align-items: center;
+   
+    height: 100vh;
+}
+.header h1 {
+    font-size: 3rem;
+    
+    font-family: 'Oswald', sans-serif;
+}
+.header span{
+    display: block;
+    font-size: 1.5rem;
+    
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 40px;
+}
+
+.header p{
+    display: block;
+    font-size: 1.2rem;
+ 
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 40px;
+}
+
+.header-text  button{
+    background-color: #f1d991;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-top: 20px;
+    
+}
+.tecnologias {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 70px;
+    margin-bottom: 40px ;
+    gap: 20px;
+    font-size: 40px;
+}
+.tecnologias-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tecnologias-icon-text {
+  margin-top: 5px;
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-family: 'Oswald', sans-serif;
+  color: #f1d991;
+}
+
+.tecnologias-icon:hover .tecnologias-icon-text {
+  opacity: 1;
+}
+
+.habi{
+    display: flex;
+    justify-content: center;
+    align-items:flex-start;
+    flex-direction: column;
+    margin-top: 40px;
+    background-color: rgba(243, 244, 230, 0.348);
+    padding: 30px;
+    padding-bottom: 100px;
+}
+.habi-secciones{
+    display: flex;
+    flex-direction: row;
+   
+    margin-top: 60px;
+    justify-content: center ;
+    align-items: center;
+    margin: 0 auto;
+    
+}
+
+.habi h2 {
+    font-size: 1rem;
+    
+    
+    margin-bottom: 20px;
+    
+}
+.habi-item{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    
+}
+.habi-item .habi-numero {
+    font-size: 60px;
+   
+    margin-right: 50px;
+    font-family: 'Oswald', sans-serif;   
+}
+.habi-descrip h3{
+    font-size: 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+
+}
+.habi-descrip p{
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+.habi-item{
+    width: 100%;
+}
+
+
+
+
+.habi-seccion-dos {
+  position: relative;
+  width: 100%;
+  height: 400px; /* ajusta según necesites */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  margin-top: 20%;
+  
+}
+
+.habi-seccion-dos-img2 img {
+  position: absolute;
+  width: 250px;
+  top: 0;
+  left: 60%;
+  z-index: 1;
+  border-radius: 10px;
+}   
+
+.habi-seccion-dos-img1 img {
+  position: absolute;
+  width: 250px;
+  top: 30%;
+  left: 40%;
+  z-index: 2;
+  border-radius: 10px;
+}
+.sobre-mi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  
+  padding: 60px 40px;
+  margin-top: -150px;
+}
+
+.sobre-mi-img {
+  flex: 1;
+  max-width: 400px;
+}
+
+.sobre-mi-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.sobre-mi-texto {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 700px;
+}
+
+.sobre-mi-texto h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.sobre-mi-texto p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.sobre-mi-texto button {
+  align-self: flex-start;
+  padding: 12px 24px;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.footer{
+    background-color: #333;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.footer-info{
+    text-align: center;
+    padding: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+.footer-links{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.footer-links ul{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+.footer-links a{
+    text-decoration: none;
+    color: white;
+    margin: 0 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+.footer-info-nombre{
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+
+}
+.footer-contacto ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding-left: 50px;
+}
+.footer-contacto li{
+    margin: 0 10px;
+    font-size: 1.2rem;
+    padding-left: 30px;
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
+.footer-contacto a{
+    margin-top: 20px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+
+
+}
+
+
+/* ====== ESTILOS BASE (ESCRITORIO) ====== */
+/* Tu código original se mantiene igual aquí */
+
+/* ====== RESPONSIVIDAD ====== */
+
+/* Tablets (pantallas medianas) */
+@media (max-width: 992px) {
+  .menu ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .menu ul li {
+    margin-left: 30px;
+    margin-bottom: 10px;
+  }
+  .header {
+    height: auto;
+    padding: 40px 20px;
+    background-position: center;
+  }
+  .header h1 {
+    font-size: 2.2rem;
+  }
+  .header span {
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+  }
+  .habi-secciones {
+    flex-direction: column;
+    align-items: center;
+  }
+  .habi-seccion-dos {
+    flex-direction: column;
+    height: auto;
+    margin-top: 50px;
+  }
+  .habi-seccion-dos-img1 img,
+  .habi-seccion-dos-img2 img {
+    position: static;
+    width: 90%;
+    max-width: 350px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .sobre-mi {
+    flex-direction: column;
+    text-align: center;
+    margin-top: 0;
+  }
+  .sobre-mi-img img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Móviles (pantallas pequeñas) */
+@media (max-width: 768px) {
+  .menu ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  .menu ul li {
+    margin: 10px 0;
+  }
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  .header span {
+    font-size: 2rem;
+  }
+  .header p {
+    font-size: 1rem;
+  }
+  .tecnologias {
+    font-size: 28px;
+    gap: 15px;
+  }
+  .habi-item .habi-numero {
+    font-size: 40px;
+    margin-right: 20px;
+  }
+  .habi-descrip h3 {
+    font-size: 1rem;
+  }
+  .habi-descrip p {
+    font-size: 0.9rem;
+  }
+  .footer-links ul,
+  .footer-contacto ul {
+    flex-direction: column;
+    padding: 0;
+  }
+  .footer-contacto li {
+    padding-left: 0;
+    margin: 5px 0;
+  }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 1.4rem;
+  }
+  .header span {
+    font-size: 1.6rem;
+  }
+  .header p {
+    font-size: 0.9rem;
+  }
+  .tecnologias {
+    font-size: 22px;
+  }
+}
